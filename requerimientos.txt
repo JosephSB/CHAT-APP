@@ -1,0 +1,17 @@
+CHAT
+
+MONGODB -> BASE DE DATOS x
+NODEJS -> BACKEND TYPESCRIPT
+NEXTJS -> FRONTEND
+DOCKER -> DEVOPS x
+NGINX OPCIONAL
+
+OJO
+- que los datos de la bd no se pierdan al cerrar container
+
+REQUERIMIENTOS
+
+- home inicial
+- Login/register
+- perfil de usuario
+- storage de imagenes
