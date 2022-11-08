@@ -6,21 +6,23 @@ mongo-data/
 ### NextJS ###
 # Dependencies
 frontend/node_modules
-/.pnp
-.pnp.js
+frontend/.pnp
+frontend/.pnp.js
 
 # Testing
-/coverage
+frontend/coverage
 
 # Next.js
-/.next/
-/out/
+frontend/.next/
+frontend/next-env.d.ts
+frontend/.vscode
+frontend/out/
 
 # Production
-/build
+frontend/build
 
 # Misc
-.DS_Store
+frontend/.DS_Store
 *.pem
 
 # Debug
@@ -30,13 +32,13 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # Local env files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
 
 # Vercel
-.vercel
+frontend/.vercel
 
 ### Node ###
 # Logs
