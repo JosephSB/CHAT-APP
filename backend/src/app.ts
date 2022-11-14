@@ -1,12 +1,15 @@
 import express from "express";
+import cors from "cors";
+import config from "./config";
+import routes from "./routes/index"
 
 const app = express()
+app.set("PORT", config.PORT)
 
-app.set("PORT", 4000)
+app.use(cors());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
-app.get("/", (req,res)=>{
-    console.log("gaaaaddd")
-    res.send("Hola bb ssdds")
-})
+app.use("/",routes);
 
 export default app

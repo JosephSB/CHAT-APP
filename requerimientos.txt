@@ -1,13 +1,13 @@
 CHAT
 
 MONGODB -> BASE DE DATOS x
-NODEJS -> BACKEND TYPESCRIPT
-NEXTJS -> FRONTEND
+NODEJS -> BACKEND TYPESCRIPT x
+NEXTJS -> FRONTEND x
 DOCKER -> DEVOPS x
 NGINX OPCIONAL
 
 OJO
-- que los datos de la bd no se pierdan al cerrar container
+- que los datos de la bd no se pierdan al cerrar container x
 
 REQUERIMIENTOS
 
