@@ -4,3 +4,8 @@ export interface IParamsRegister {
     password: string
     confirmPassword: string
 }
+
+export interface IParamsLogin{
+    email: string
+    password: string
+}

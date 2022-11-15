@@ -1,14 +1,15 @@
 import UserCredentialModel from "../../models/UserCredential.schema";
 import UserModel from "../../models/User.schema";
-import { IParamsRegister } from "./types/auth.types";
+import { IParamsLogin, IParamsRegister } from "./types/auth.types";
 import { CreateID } from "../../utils/Id.utils";
+import { ComparePassword, EncryptPassword } from "../../utils/Encript.utils";
 
 export const CreateUser = async (params: IParamsRegister) => {
     const ID = CreateID();
     await UserCredentialModel.create({
         user_id: ID,
         email: params.email,
-        password: params.password,
+        password: EncryptPassword(params.password),
         created_at: new Date()
     })
 
@@ -18,4 +19,15 @@ export const CreateUser = async (params: IParamsRegister) => {
     })
 
     return ID
+}
+
+export const validateUserByCredentials = async (params: IParamsLogin) => {
+   const resp =  await UserCredentialModel.findOne({email: params.email})
+
+    if(!ComparePassword(params.password , resp?.password || "")) return {user_id: null, email: null}
+
+   return {
+        user_id: resp?.user_id || null,
+        email: resp?.email || null,
+   }
 }
