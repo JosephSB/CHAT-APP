@@ -21,6 +21,11 @@ export const CreateUser = async (params: IParamsRegister) => {
     return ID
 }
 
+export const findUserEmail = async (email: string) => {
+    const resp =  await UserCredentialModel.findOne({email})
+    return resp || null
+}
+
 export const validateUserByCredentials = async (params: IParamsLogin) => {
    const resp =  await UserCredentialModel.findOne({email: params.email})
 
