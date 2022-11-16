@@ -24,3 +24,11 @@ export const ValidateLengthObject = (obj: object,length: number) => {
     if (Object.keys(obj).length !== length) return false
     return true
 }
+
+export const validateImgFile = (file: Express.Multer.File) => {
+    const parserMimetype = file.mimetype.split("/");
+    if(parserMimetype[0] !== "image") return false
+    if(parserMimetype[1] !== "png" && parserMimetype[1] !== "jpg" && parserMimetype[1] !== "webp") return false
+    if(file.size > 1024*1024)  return false
+    return true
+}

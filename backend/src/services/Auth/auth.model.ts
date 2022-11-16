@@ -3,7 +3,7 @@ import UserModel from "../../models/User.schema";
 import { IParamsLogin, IParamsRegister } from "./types/auth.types";
 import { CreateID } from "../../utils/Id.utils";
 import { ComparePassword, EncryptPassword } from "../../utils/Encript.utils";
-import { User } from "../../types/User.types";
+import { UserCredentials } from "../../types/User.types";
 
 export const CreateUser = async (params: IParamsRegister) => {
     const ID = CreateID();
@@ -22,16 +22,12 @@ export const CreateUser = async (params: IParamsRegister) => {
     return ID
 }
 
-export const getFullDataUser = async (user_id: string): Promise<User> => {
-    const resp = await UserModel.findOne({user_id});
+export const getFullDataUser = async (user_id: string): Promise<Pick<UserCredentials, "user_id"| "email">> => {
+    const resp = await UserCredentialModel.findOne({user_id});
 
     return {
         user_id: resp?.user_id || "",
-        url_photo: resp?.url_photo || "",
-        description: resp?.description || "",
-        username: resp?.username || "",
-        contacts: resp?.contacts || [],
-        pendings: resp?.pendings || [],
+        email: resp?.email || "",
     }
 }
 

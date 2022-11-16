@@ -79,6 +79,7 @@ build/Release
 
 # Dependency directories
 backend/node_modules
+backend/src/uploads
 backend/build
 jspm_packages/
 

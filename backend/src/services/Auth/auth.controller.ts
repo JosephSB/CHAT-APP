@@ -38,7 +38,7 @@ export const getUser = async (req: Request, res: Response) => {
     try {
         const data = await getFullDataUser(user?.user_id || "");
         res.status(200).json({
-            message: "Login exitoso",
+            message: "me",
             data
         })
 
