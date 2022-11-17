@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { processProfileImage } from "../../libs/files.libs";
 import { findUserInContacts, getDataUser, updateDataUser } from "./profile.model";
+import { ValidateParamsProfile } from "./utils/profile.validate";
 
 export const getMyProfile = async (req: Request, res: Response) => {
     const user = req.user;
@@ -67,6 +68,30 @@ export const changePhoto = async (req: Request, res: Response) => {
         res.status(200).json({
             message: "foto actualizada",
             url_photo: resp.filename
+        })
+    } catch (error) {
+        console.error(error)
+        let message = 'Upps ocurrio un error'
+        if (error instanceof Error) message = error.message
+
+        res.status(400).json({
+            message: message
+        })
+    }
+
+}
+
+export const changeInfo = async (req: Request, res: Response) => {
+    const user = req.user;
+    const data = req.body;
+
+    try {
+        if(!ValidateParamsProfile(data)) throw new Error("Los datos son incorrectos");
+        await updateDataUser(user?.user_id || "", data).catch((e) => { throw new Error("Error al actualizar foto usuario") })
+
+        res.status(200).json({
+            message: "perfil actualizado",
+            data: data
         })
     } catch (error) {
         console.error(error)
