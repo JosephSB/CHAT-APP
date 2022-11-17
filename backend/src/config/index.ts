@@ -1,13 +1,14 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-const STORAGE = __dirname+"/"+"../uploads";
+const ROOT = process.env.root_proyect || __dirname;
 
 export default {
     PORT: process.env.port || 4000,
+    root: ROOT,
     storage: {
-        root: STORAGE,
-        users: STORAGE+"/users"
+        root: ROOT+"/uploads",
+        users: ROOT+"/uploads/users"
     },
     jwt: {
         secret: process.env.jwtsecret || ""
