@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { processFileImage } from "../../libs/files.libs";
+import { processProfileImage } from "../../libs/files.libs";
 import { findUserInContacts, getDataUser, updateDataUser } from "./profile.model";
 
 export const getMyProfile = async (req: Request, res: Response) => {
@@ -59,7 +59,8 @@ export const changePhoto = async (req: Request, res: Response) => {
     try {
         if(!image) throw new Error("No se recibio ninguna imagen")
 
-        const resp = await processFileImage(image);
+        const resp = await processProfileImage(image);
+        // need to add function for remove old image profiles
         if(!resp.success) throw new Error("Error al guardar la imagen")
         await updateDataUser(user?.user_id || "", {url_photo: resp.filename}).catch((e) => { throw new Error("Error al actualizar foto usuario") })
         

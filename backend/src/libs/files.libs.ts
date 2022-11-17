@@ -2,9 +2,10 @@ import sharp from "sharp";
 import { CreateID } from "../utils/Id.utils";
 import { validateImgFile } from "../utils/Validator.util"
 import fs from "fs"
+import config from "../config/index";
 
-const resizeImgFile = async (fileBuffer: Buffer, size: number, filename: string) => {
-    const destination = __dirname+"/"+"../uploads/";
+const resizeImgFile = async (fileBuffer: Buffer, size: number, filename: string, dest: string) => {
+    const destination = dest;
 
     if (!fs.existsSync(destination)) {
         const mkDir = () =>
@@ -28,7 +29,7 @@ const resizeImgFile = async (fileBuffer: Buffer, size: number, filename: string)
         });
 }
 
-export const processFileImage = async (file: Express.Multer.File): Promise<{ success: boolean, filename: string }> => {
+export const processProfileImage = async (file: Express.Multer.File): Promise<{ success: boolean, filename: string }> => {
     try {
         //return url
         if (!validateImgFile(file)) throw new Error("Formato Invalido");
@@ -37,9 +38,9 @@ export const processFileImage = async (file: Express.Multer.File): Promise<{ suc
         //50x50
         //200x200
         //525x525
-        await resizeImgFile(file.buffer, 50, "50x50-" + filename).catch((e) => { throw new Error(e) })
-        await resizeImgFile(file.buffer, 200, "200x200-" + filename).catch((e) => { throw new Error(e) })
-        await resizeImgFile(file.buffer, 525, "525x525-" + filename).catch((e) => { throw new Error(e) })
+        await resizeImgFile(file.buffer, 50, "50x50-" + filename, config.storage.users).catch((e) => { throw new Error(e) })
+        await resizeImgFile(file.buffer, 200, "200x200-" + filename, config.storage.users).catch((e) => { throw new Error(e) })
+        await resizeImgFile(file.buffer, 525, "525x525-" + filename, config.storage.users).catch((e) => { throw new Error(e) })
 
         return {
             success: true,

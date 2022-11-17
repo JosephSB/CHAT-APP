@@ -1,0 +1,1 @@
+export type sizes = "50x50" | "200x200" | "525x525";
