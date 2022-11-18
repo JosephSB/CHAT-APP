@@ -1,4 +1,5 @@
-import app from "./src/app";
+import {server, app} from "./src/app";
+import { conectionSockets } from "./src/sockets";
 
 
 console.log("                                                                                                    ")
@@ -48,4 +49,6 @@ console.log("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 console.log("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM  CREATED BY JOSEPHSB  MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM")
 console.log("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM")
 
-app.listen(app.get("PORT"), ()=> console.log("server run on port "+app.get("PORT")))
+server.listen(app.get("PORT"), ()=> console.log("server run on port "+app.get("PORT")))
+
+conectionSockets(server)

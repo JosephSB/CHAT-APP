@@ -1,4 +1,5 @@
 import express from "express";
+import http from "http"
 import cors from "cors";
 import config from "./config";
 import routes from "./routes/index"
@@ -13,4 +14,6 @@ app.use(express.static(__dirname +'/public'));
 
 app.use("/",routes);
 
-export default app
+const server = http.createServer(app);
+
+export { server, app }
