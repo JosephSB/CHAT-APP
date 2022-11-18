@@ -14,4 +14,5 @@ export interface User extends BaseUser{
     username: string
     contacts: string[]
     pendings: string[]
+    requested: string[]
 }

@@ -1,7 +1,7 @@
 import UserModel from "../../models/User.schema";
 import { User } from "../../types/User.types";
 
-export const getDataUser = async (user_id: string): Promise<Omit<User, "pendings">> => {
+export const getDataUser = async (user_id: string): Promise<Omit<User, "pendings" | "requested">> => {
     const resp = await UserModel.findOne({user_id});
 
     return {

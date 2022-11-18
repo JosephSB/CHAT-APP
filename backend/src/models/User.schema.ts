@@ -9,7 +9,8 @@ const UserSchema = new Schema(
         description: String,
         username: String,
         contacts: [String],
-        pendings: [String]
+        pendings: [String],
+        requested: [String],
     },
     { collection: "user" }
 );
