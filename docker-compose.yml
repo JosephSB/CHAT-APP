@@ -28,7 +28,7 @@ services:
   #  ports:
   #    - "5000:3000"
   #  command: 
-  #    sh -c "npm run dev"
+  #    sh -c "npm start"
   #  volumes:
   #    - ./frontend:/usr/src/frontend
   #    - /usr/src/frontend/node_modules
