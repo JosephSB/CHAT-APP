@@ -6,10 +6,10 @@
       "dom.iterable",
       "esnext"
     ],
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
       "@config/*": [
-        "config/*"
+        "src/config/*"
       ],
     },
     "allowJs": true,
