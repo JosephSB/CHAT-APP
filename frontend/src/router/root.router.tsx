@@ -4,13 +4,14 @@ import ScrollToTop from "@/components/scrollToTop";
 import ContextAuth from "@/contexts/Auth.context";
 import AppRouter from "./App.router";
 import AuthRouter from "./Auth.router";
+import SimpleLoader from "@/components/loaders/SimpleLoader";
 
 const RootRouter = () => {
     const { dataUser,loading } = ContextAuth();
 
     if(loading){
         return(
-            <p>Cargando</p>
+            <SimpleLoader/>
         )
     }
 
