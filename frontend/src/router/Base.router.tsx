@@ -1,4 +1,6 @@
+import Home from "@/pages/Home";
+
 export default {
     path: "/",
-    element: <p>Home</p>,
+    element: <Home/>,
 }
