@@ -1,11 +1,13 @@
+import BtnPrimary from "@/components/buttons/BtnPrimary"
+import LogoTunkay from "@/components/LogoTunkay"
 import { StyledHeader, StyledMain } from "./styles"
 
 const Home = () => {
     return(
         <StyledMain>
             <StyledHeader>
-                <h1>TUNKAY</h1>
-                <button>INICIAR SESION</button>
+                <LogoTunkay/>
+                <BtnPrimary text="INICIAR SESION"/>
             </StyledHeader>
             <div>
 

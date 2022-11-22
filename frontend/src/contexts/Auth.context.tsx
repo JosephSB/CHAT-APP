@@ -36,7 +36,6 @@ const AuthContextProvider = ({ children }: Props) => {
 
     useEffect(() => {
         setLoading(true)
-        console.log("gaaa")
         getMyProfile()
             .then((resp) => {
                 if (resp.status === 200) {

@@ -1,7 +1,7 @@
 import { PRIMARY_COLOR,BG_COLOR, TEXT_COLOR } from "@/styled-components/variables";
 import styled from "styled-components";
 
-export const StyledMain = styled.header`
+export const StyledMain = styled.div`
     width: 100%;
     min-height: 100vh;
     background-color: ${BG_COLOR};

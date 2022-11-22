@@ -1,5 +1,6 @@
 import { Navigate, useRoutes } from "react-router-dom";
 import BaseRouter from "@/router/Base.router";
+import Login from "@/pages/Auth/views/Login";
 //import Login from "../pages/Auth/Login";
 //import Register from "../pages/Auth/Register";
 
@@ -8,7 +9,7 @@ const AuthRouter = () => {
         BaseRouter,
         {
             path: "/login",
-            element: <p>login</p>,
+            element: <Login/>,
         },
         {
             path: "/register",
