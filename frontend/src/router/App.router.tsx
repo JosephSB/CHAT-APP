@@ -1,12 +1,13 @@
 import { Navigate, useRoutes } from "react-router-dom";
 import BaseRouter from "@/router/Base.router";
+import MainApp from "@/pages/App";
 
 function AppRouter() {
     const routes = [
         BaseRouter,
         {
             path: "/app",
-            element: <p>app</p>,
+            element: <MainApp/>,
         },
         {
             path: "*",
