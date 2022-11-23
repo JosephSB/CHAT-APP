@@ -1,8 +1,7 @@
 import { Navigate, useRoutes } from "react-router-dom";
 import BaseRouter from "@/router/Base.router";
 import Login from "@/pages/Auth/views/Login";
-//import Login from "../pages/Auth/Login";
-//import Register from "../pages/Auth/Register";
+import Register from "@/pages/Auth/views/Register";
 
 const AuthRouter = () => {
     const routes = [
@@ -13,7 +12,7 @@ const AuthRouter = () => {
         },
         {
             path: "/register",
-            element: <p>register</p>,
+            element: <Register/>,
         },
         {
             path: "*",

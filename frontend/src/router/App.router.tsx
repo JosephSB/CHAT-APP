@@ -1,4 +1,4 @@
-import { useRoutes } from "react-router-dom";
+import { Navigate, useRoutes } from "react-router-dom";
 import BaseRouter from "@/router/Base.router";
 
 function AppRouter() {
@@ -6,13 +6,11 @@ function AppRouter() {
         BaseRouter,
         {
             path: "/app",
-
-            children: [
-                {
-                    path: "/",
-                    element: <p>app</p>,
-                }
-            ]
+            element: <p>app</p>,
+        },
+        {
+            path: "*",
+            element: <Navigate to="/app" />,
         },
     ];
 

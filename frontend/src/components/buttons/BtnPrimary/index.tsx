@@ -1,8 +1,9 @@
+import React from "react"
 import { StyledBtnPrimary } from "./styles"
 
 interface props {
     text: string
-    action?: () => void
+    action?: (e: React.FormEvent<HTMLButtonElement>) => void
     color ?: string
     textcolor ?: string
 }

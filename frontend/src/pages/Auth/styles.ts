@@ -26,6 +26,12 @@ export const StyledForm = styled.form`
     justify-content: center;
     align-items:center;
     flex-direction: column;
+    .Text-Error{
+        color: firebrick;
+        font-size: 12px;
+        margin: 5px 0;
+        font-weight: bold;
+    }
     .form-input{
         padding: 0.8rem;
         margin: 5px 0;
