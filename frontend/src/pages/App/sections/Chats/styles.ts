@@ -19,6 +19,7 @@ export const StyledHeaderInfo = styled.div`
     grid-template-columns: 20% 80%;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     .header-img{
         border-radius: 50%;
     }
@@ -27,6 +28,7 @@ export const StyledHeaderInfo = styled.div`
         font-weight: bold;
         text-overflow: ellipsis;
         overflow: hidden;
+        text-transform: uppercase;
         white-space: nowrap;
     }
 `

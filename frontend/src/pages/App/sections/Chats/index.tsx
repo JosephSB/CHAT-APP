@@ -1,16 +1,21 @@
 import Avatar from 'react-avatar';
+import ContextDataProfile from '../../contexts/DataProfile.context';
+import ContextRouter from '../../contexts/Router.context';
 import { StyledAside, StyledContainerSearch, StyledHeader, StyledHeaderButtons, StyledHeaderInfo } from './styles';
 
 const ChatsSection = () => {
+    const {handleRoute} = ContextRouter();
+    const {dataUser} = ContextDataProfile()
+
     return (
         <StyledAside>
             <StyledHeader>
-                <StyledHeaderInfo>
-                    <Avatar className='header-img' size='40' name="Joseph Silva" />
-                    <p className='header-title'>JOSEPH SILVA B</p>
+                <StyledHeaderInfo onClick={() => handleRoute(2)}>
+                    <Avatar className='header-img' src={dataUser.url_photo} size='40' name={dataUser.username} />
+                    <p className='header-title'>{dataUser.username}</p>
                 </StyledHeaderInfo>
                 <StyledHeaderButtons>
-                    <i className="fas fa-user-friends"></i>
+                    <i onClick={() => handleRoute(1)} className="fas fa-user-friends"></i>
                 </StyledHeaderButtons>
             </StyledHeader>
             <StyledContainerSearch>

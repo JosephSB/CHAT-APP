@@ -1,5 +1,6 @@
 import ContextRouter from "../contexts/Router.context";
 import ChatsSection from "../sections/Chats";
+import ProfileSection from "../sections/Profile";
 
 const Routes = [
     {
@@ -12,7 +13,7 @@ const Routes = [
     },
     {
         id: 2,
-        view: <p>PERFIL</p>
+        view: <ProfileSection/>
     },
     {
         id: 3,
