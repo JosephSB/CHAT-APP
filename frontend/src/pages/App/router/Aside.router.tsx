@@ -1,9 +1,10 @@
 import ContextRouter from "../contexts/Router.context";
+import ChatsSection from "../sections/Chats";
 
 const Routes = [
     {
         id: 0,
-        view: <p>CHATS</p>
+        view: <ChatsSection/>
     },
     {
         id: 1,
