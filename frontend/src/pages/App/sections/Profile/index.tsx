@@ -1,6 +1,8 @@
-import Avatar from "react-avatar";
 import ContextDataProfile from "../../contexts/DataProfile.context";
 import ContextRouter from "../../contexts/Router.context";
+import BoxEditPhoto from "./components/BoxEditPhoto";
+import BoxEditProfile from "./components/BoxEditProfile";
+import BtnExit from "./components/BtnExit";
 import { StyledAside, StyledBody, StyledHeader } from "./styles"
 
 const ProfileSection = () => {
@@ -14,8 +16,30 @@ const ProfileSection = () => {
                 <i onClick={() => handleRoute(0)} className="fas fa-times-circle"></i>
             </StyledHeader>
             <StyledBody>
-                <div className="profile-boxImg">
-                    <Avatar className='profile-img' src={dataUser.url_photo} size='250' name={dataUser.username} />
+                <BoxEditPhoto
+                    initSRC={dataUser.url_photo}
+                    name={dataUser.username}
+                />
+                <div className="profile-box">
+                    <p className="profile-boxTitle">Username: </p>
+                    <BoxEditProfile
+                        name="username"
+                        initText={dataUser.username}
+                    />
+                </div>
+                <div className="profile-box">
+                    <p className="profile-boxTitle">Descripcion: </p>
+                    <BoxEditProfile
+                        name="description"
+                        initText={
+                            dataUser.description.length === 0 
+                            ?   "No tiene descripcion"
+                            :   dataUser.description
+                        }
+                    />
+                </div>
+                <div className="profile-footer">
+                    <BtnExit/>
                 </div>
             </StyledBody>
         </StyledAside>

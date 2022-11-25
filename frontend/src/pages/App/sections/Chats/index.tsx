@@ -1,3 +1,4 @@
+import { createUrlStorage } from '@/utils/Storage.util';
 import Avatar from 'react-avatar';
 import ContextDataProfile from '../../contexts/DataProfile.context';
 import ContextRouter from '../../contexts/Router.context';
@@ -11,7 +12,12 @@ const ChatsSection = () => {
         <StyledAside>
             <StyledHeader>
                 <StyledHeaderInfo onClick={() => handleRoute(2)}>
-                    <Avatar className='header-img' src={dataUser.url_photo} size='40' name={dataUser.username} />
+                    <Avatar 
+                        className='header-img' 
+                        src={dataUser.url_photo.length === 0 ? dataUser.url_photo : createUrlStorage(dataUser.url_photo,200, "users")} 
+                        size='40' 
+                        name={dataUser.username} 
+                    />
                     <p className='header-title'>{dataUser.username}</p>
                 </StyledHeaderInfo>
                 <StyledHeaderButtons>
