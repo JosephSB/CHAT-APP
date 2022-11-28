@@ -1,5 +1,6 @@
 import { createUrlStorage } from '@/utils/Storage.util';
 import Avatar from 'react-avatar';
+import SearchInput from '../../components/SearchInput';
 import ContextDataProfile from '../../contexts/DataProfile.context';
 import ContextRouter from '../../contexts/Router.context';
 import { StyledAside, StyledContainerSearch, StyledHeader, StyledHeaderButtons, StyledHeaderInfo } from './styles';
@@ -25,10 +26,7 @@ const ChatsSection = () => {
                 </StyledHeaderButtons>
             </StyledHeader>
             <StyledContainerSearch>
-                <div className='search-input'>
-                    <i className="fas fa-search"></i>
-                    <input type="text" placeholder='Buscar Chat' />
-                </div>
+                <SearchInput placeholder='Buscar Chat'/>
                 <p className='search-btn'>+ CREAR GRUPO</p>
             </StyledContainerSearch>
         </StyledAside>
