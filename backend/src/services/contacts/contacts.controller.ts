@@ -10,10 +10,17 @@ export const getLists = async (req: Request, res: Response) => {
 
         res.status(200).json({
             message: "Tu lista de contactos",
+            lists: resp[0] || [],
+        })
+        /*
+
+        res.status(200).json({
+            message: "Tu lista de contactos",
             contacts: resp?.contacts || [],
             pendings: resp?.pendings || [],
             requested: resp?.requested || []
         })
+        */
     } catch (error) {
         console.error(error)
         let message = 'Upps ocurrio un error'

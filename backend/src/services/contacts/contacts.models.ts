@@ -2,10 +2,49 @@ import UserModel from "../../models/User.schema"
 
 export const getListsOfUser = async (user_id: string) => {
 
+    const resp = await UserModel.aggregate([
+        {
+            $match: {
+                "user_id" : user_id
+            }
+        }, 
+        {
+            $project: {
+                _id:0 ,contacts: 1, pendings: 1, requested: 1
+            }
+        }, 
+        {
+            $lookup: {
+                from : "user",
+                localField : "contacts",
+                foreignField : "user_id",
+                as : "contacts"
+            }
+        },
+        {
+            $lookup: {
+                from : "user",
+                localField : "pendings",
+                foreignField : "user_id",
+                as : "pendings"
+            }
+        },
+        {
+            $lookup: {
+                from : "user",
+                localField : "requested",
+                foreignField : "user_id",
+                as : "requested"
+            }
+        }
+    ])
+
+
+/*
     const resp = await UserModel.findOne({
         user_id: user_id
     },{contacts: 1, pendings: 1, requested: 1})
-
+*/
     return resp
 }
 
