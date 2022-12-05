@@ -12,7 +12,9 @@ const INIT_DATA_USER = {
     url_photo: "",
     description: "",
     username: "",
-    contacts: []
+    contacts: [],
+    pendings: [],
+    requested: []
 }
 
 const DataProfileContext = createContext<DataProfileInterface>(

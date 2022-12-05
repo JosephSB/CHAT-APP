@@ -3,5 +3,7 @@ export interface IProfile {
     url_photo: string
     description: string
     username: string
-    contacts: string[]
+    contacts: IProfile[]
+    pendings: IProfile[]
+    requested: IProfile[]
 }

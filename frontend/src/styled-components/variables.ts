@@ -4,3 +4,4 @@ export const SECONDARY_COLOR = "#242424";
 export const TEXT_COLOR = "#FFFFFF";
 export const OTHER_TEXT_COLOR = "#000000";
 export const COLOR_EXIT = "#F00F53"
+export const COLOR_SUCCESSFUL = "#1EDF6B"

@@ -1,11 +1,47 @@
 import { useState } from "react";
-import SearchInput from "../../components/SearchInput";
+import { useQuery } from "react-query";
 import ContextRouter from "../../contexts/Router.context";
+import { getContactLists } from "../../services/Contacts.services";
+import ContactsWrapper from "./components/ContactsWrapper";
 import { StyledAside,StyledBody,StyledHeader, StyledMainSearch, StyledMainTabs } from "./styles";
+import SimpleLoader from "@/components/loaders/SimpleLoader";
+import { IContacts } from "../../interfaces/Contacts.interfaces";
+import PendingsWrapper from "./components/ContactsPendings";
+import ContactsSearch from "./components/ContactsSearch";
 
 const ContactsSection = () => {
+    const { data, isError, isLoading } = useQuery<IContacts>('ContactLists', getContactLists)
     const [tabActive, setTabActive] = useState(0);
     const {handleRoute} = ContextRouter();
+
+    if(isLoading){
+        return(
+            <StyledAside>
+                <StyledHeader>
+                    <p>CONTACTOS</p>
+                    <i onClick={() => handleRoute(0)} className="fas fa-times-circle"></i>
+                </StyledHeader>
+                <StyledBody>
+                    <SimpleLoader/>
+                    <p>Cargando Contactos</p>
+                </StyledBody>
+            </StyledAside>  
+        )
+    }
+
+    if(isError || !data){
+        return(
+            <StyledAside>
+                <StyledHeader>
+                    <p>CONTACTOS</p>
+                    <i onClick={() => handleRoute(0)} className="fas fa-times-circle"></i>
+                </StyledHeader>
+                <StyledBody>
+                    <p>Ocurrio un error</p>
+                </StyledBody>
+            </StyledAside>  
+        )
+    }
 
     return (
         <StyledAside>
@@ -32,7 +68,9 @@ const ContactsSection = () => {
                     />
                 </StyledMainTabs>
                 <StyledMainSearch>
-                    <SearchInput placeholder='Buscar Contacto'/>
+                    {tabActive === 0 && <ContactsWrapper list={data.contacts}/> }
+                    {tabActive === 1 && <PendingsWrapper list={data.pendings}/> }
+                    {tabActive === 2 && <ContactsSearch/> }
                 </StyledMainSearch>
             </StyledBody>
         </StyledAside>
