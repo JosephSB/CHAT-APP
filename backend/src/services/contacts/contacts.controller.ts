@@ -1,6 +1,6 @@
 import { getFullDataUser } from "../Auth/auth.model";
 import { Request, Response } from "express";
-import { acceptPending, addRequestToList, existInList, findUser, getListsOfUser, removeContact } from "./contacts.models";
+import { acceptPending, addRequestToList, existInList, findUser, getListsOfUser, getStatusContact, removeContact } from "./contacts.models";
 
 export const getLists = async (req: Request, res: Response) => {
     const user = req.user;
@@ -125,6 +125,29 @@ export const searchUser = async (req: Request, res: Response) => {
 
         res.status(200).json({
             message: "usuarios encontrados",
+            data: resp
+        })
+    } catch (error) {
+        console.error(error)
+        let message = 'Upps ocurrio un error'
+        if (error instanceof Error) message = error.message
+
+        res.status(400).json({
+            message: message
+        })     
+    }
+}
+
+export const statusContact = async (req: Request, res: Response) => {
+    const params = req.params;
+    const user = req.user;
+
+    try {
+        const resp = await getStatusContact(user?.user_id || "",params.idUser || "")
+            .catch((e) => {throw new Error("error al buscar") })
+
+        res.status(200).json({
+            message: "estado con el usuario",
             data: resp
         })
     } catch (error) {

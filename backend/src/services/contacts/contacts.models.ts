@@ -100,3 +100,34 @@ export const findUser = async (q: string) => {
 
     return resp || []
 }
+
+export const getStatusContact = async (myID: string, otherID: string) => {
+    const resp = await UserModel.aggregate([
+        {
+            $match: {
+                "user_id" : myID
+            }
+        }, 
+        {
+            $project: {
+                _id:0 ,
+                status: {
+                    $switch: {
+                      branches: [
+                        { case: { "$eq": [ "$contacts",otherID ] }, "then": 1 },
+                        { case: { "$eq": [ "$pendings", otherID ] }, "then": 2 },
+                        { case: { "$eq": [ "$requested", otherID ] }, "then": 3 }
+                      ],
+                      default: 0
+                    }
+                },
+            }
+        }, 
+    ])
+    // 0 no son amigos
+    // 1 son amigos
+    // 2  pendiente
+    // 3  pendiente
+
+    return resp[0] 
+}
