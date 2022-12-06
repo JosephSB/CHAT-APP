@@ -1,6 +1,7 @@
 import { IProfile } from "@/pages/App/interfaces/Profile.interface"
 import { createUrlStorage } from "@/utils/Storage.util"
 import Avatar from "react-avatar"
+import RouterButtons from "./buttons"
 import { StyledBodyCardContact, StyledButtonCardContact, StyledCardContact } from "./styles"
 
 interface props {
@@ -22,7 +23,7 @@ const CardContact = ({data}:props) => {
                 <p className="title"> {data.username} </p>
                 <p className="subtitle"> {data.description} </p>
             </StyledBodyCardContact>
-            <StyledButtonCardContact><i className="fas fa-check-circle"/>&nbsp;ACEPTAR</StyledButtonCardContact>
+            <RouterButtons userID={data.user_id} />
         </StyledCardContact>
     )
 }
