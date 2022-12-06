@@ -144,11 +144,13 @@ export const statusContact = async (req: Request, res: Response) => {
 
     try {
         const resp = await getStatusContact(user?.user_id || "",params.idUser || "")
-            .catch((e) => {throw new Error("error al buscar") })
+            .catch((e) => { throw new Error("error al buscar") })
 
         res.status(200).json({
             message: "estado con el usuario",
-            data: resp
+            data: {
+                status: resp
+            }
         })
     } catch (error) {
         console.error(error)
