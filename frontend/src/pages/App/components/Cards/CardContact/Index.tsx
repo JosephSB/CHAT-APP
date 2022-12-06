@@ -13,7 +13,7 @@ const CardContact = ({data}:props) => {
             <Avatar 
                 className='cardContact-img' 
                 src={
-                    data.url_photo.length === 0 ? data.username : createUrlStorage(data.url_photo,50, "users")
+                    data?.url_photo?.length === 0 ? data.username : createUrlStorage(data.url_photo,50, "users")
                 } 
                 size='50' 
                 name={data.username} 

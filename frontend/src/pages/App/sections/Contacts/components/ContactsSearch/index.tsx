@@ -1,17 +1,31 @@
+import SimpleLoader from "@/components/loaders/SimpleLoader";
+import CardContact from "@/pages/App/components/Cards/CardContact/Index";
 import SearchInput from "@/pages/App/components/SearchInput"
+import { IProfile } from "@/pages/App/interfaces/Profile.interface";
+import { searchContacts } from "@/pages/App/services/Contacts.services";
 import { useState } from "react";
+import { StyledWrapperCardContacts } from "../../styles";
 
 const ContactsSearch = () => {
-    const [resp, setResp] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [resp, setResp] = useState<IProfile[] | [] >([]);
 
     const handleInput = (text: string) =>{
-        console.log(text)
+        setLoading(true)
+        searchContacts(text)
+        .then( (resp) => {
+            if(resp.status === 200) setResp(resp.data.data)
+        } )
+        .catch( (err) => console.log(err) )
+        .finally( () => setLoading(false) )
     }
-
     return(
-        <div>
+        <StyledWrapperCardContacts>
             <SearchInput action={handleInput} placeholder='Buscar Contactos'/>
-        </div>
+            {loading && <SimpleLoader/>}
+            {resp.length === 0 && <p>Sin resultados</p>}
+            {resp.map( (item) => <CardContact data={item} /> )}
+        </StyledWrapperCardContacts>
     )
 }
 

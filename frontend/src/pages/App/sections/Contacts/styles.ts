@@ -50,3 +50,11 @@ export const StyledMainSearch = styled.div`
     width: 100%;
     padding: 0.5rem;
 `
+
+export const StyledWrapperCardContacts = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`
