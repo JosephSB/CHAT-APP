@@ -1,7 +1,7 @@
 import UserModel from "../../models/User.schema";
 import { User } from "../../types/User.types";
 
-export const getDataUser = async (user_id: string): Promise<Omit<User, "pendings" | "requested">> => {
+export const getDataUser = async (user_id: string): Promise<User> => {
     const resp = await UserModel.findOne({user_id});
 
     return {
@@ -10,7 +10,8 @@ export const getDataUser = async (user_id: string): Promise<Omit<User, "pendings
         description: resp?.description || "",
         username: resp?.username || "",
         contacts: resp?.contacts || [],
-        //pendings: resp?.pendings || [],
+        pendings: resp?.pendings || [],
+        requested: resp?.pendings || [],
     }
 }
 
