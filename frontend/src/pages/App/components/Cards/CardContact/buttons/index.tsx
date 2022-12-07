@@ -19,10 +19,10 @@ const RouterButtons = ({userID}:props) => {
     if(isLoading) return <p>loading</p>
 
     if(data?.status === 1) return <BtnFriends/>
-    if(data?.status === 2) return <BtnAccept/>
+    if(data?.status === 2) return <BtnAccept userID={userID}/>
     if(data?.status === 3) return <BtnRequested/>
 
-    return <BtnAdd/>
+    return <BtnAdd userID={userID} />
 }
 
 export default RouterButtons

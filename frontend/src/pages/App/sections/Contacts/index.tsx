@@ -8,12 +8,13 @@ import SimpleLoader from "@/components/loaders/SimpleLoader";
 import { IContacts } from "../../interfaces/Contacts.interfaces";
 import PendingsWrapper from "./components/ContactsPendings";
 import ContactsSearch from "./components/ContactsSearch";
+import ContextDataProfile from "../../contexts/DataProfile.context";
 
 const ContactsSection = () => {
-    const { data, isError, isLoading } = useQuery<IContacts>('ContactLists', getContactLists)
+    //const { data, isError, isLoading, refetch } = useQuery<IContacts>('ContactLists', getContactLists)
     const [tabActive, setTabActive] = useState(0);
     const {handleRoute} = ContextRouter();
-
+/*
     if(isLoading){
         return(
             <StyledAside>
@@ -42,7 +43,7 @@ const ContactsSection = () => {
             </StyledAside>  
         )
     }
-
+*/
     return (
         <StyledAside>
             <StyledHeader>
@@ -68,8 +69,8 @@ const ContactsSection = () => {
                     />
                 </StyledMainTabs>
                 <StyledMainSearch>
-                    {tabActive === 0 && <ContactsWrapper list={data.contacts}/> }
-                    {tabActive === 1 && <PendingsWrapper list={data.pendings}/> }
+                    {tabActive === 0 && <ContactsWrapper /> }
+                    {tabActive === 1 && <PendingsWrapper /> }
                     {tabActive === 2 && <ContactsSearch/> }
                 </StyledMainSearch>
             </StyledBody>

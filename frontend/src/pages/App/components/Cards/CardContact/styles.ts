@@ -30,9 +30,10 @@ export const StyledBodyCardContact = styled.div`
 export const StyledButtonCardContact = styled.button`
     width: 100%;
     height: 30px;
+    border: none;
     background-color: ${ (props) => props.color ? props.color : COLOR_SUCCESSFUL};
     padding: 0.2rem;
-    font-size: 10px; 
+    font-size: 8px; 
     color: ${TEXT_COLOR};
     cursor: pointer;
     border-radius: 5px;
