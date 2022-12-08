@@ -1,15 +1,23 @@
 import { useContext, useState, createContext } from "react";
 
 interface RouterInterface {
-    active: number,
-    handleRoute: (newRoute: number) => void
+    viewsActive: {
+        aside: number,
+        body: number
+    }
+    handleAsideRoute: (newRoute: number) => void
+    handleBodyRoute: (newRoute: number) => void
 }
 
 
 const RouterContext = createContext<RouterInterface>(
     {
-        active: 0,
-        handleRoute: () => {return}
+        viewsActive: {
+            aside: 0,
+            body: 0
+        },
+        handleAsideRoute: () => {return},
+        handleBodyRoute: () => {return}
     }
 );
 
@@ -18,15 +26,21 @@ interface Props {
 }
 
 const RouterContextProvider = ({ children }: Props) => {
-    const [routeActive, setRouteActive] = useState(0);
+    const [viewsActive, setViewActive] = useState({
+        aside: 0,
+        body: 1
+    });
 
-    const handleRouteActive = (newRoute: number) => setRouteActive(newRoute)
+    const handleRouteActive = (newRoute: number, type: "aside" | "body") => {
+        setViewActive({...viewsActive, [type]:newRoute })
+    }
 
     return (
         <RouterContext.Provider value={
             {
-                active: routeActive,
-                handleRoute: handleRouteActive
+                viewsActive,
+                handleAsideRoute: (newRoute: number) => handleRouteActive(newRoute, "aside"),
+                handleBodyRoute: (newRoute: number) => handleRouteActive(newRoute, "body")
             }
         }>
             {children}

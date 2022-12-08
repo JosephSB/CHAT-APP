@@ -6,14 +6,14 @@ import BtnExit from "./components/BtnExit";
 import { StyledAside, StyledBody, StyledHeader } from "./styles"
 
 const ProfileSection = () => {
-    const {handleRoute} = ContextRouter();
+    const {handleAsideRoute} = ContextRouter();
     const {dataUser} = ContextDataProfile();
 
     return(
         <StyledAside>
             <StyledHeader>
                 <p>PERFIL</p>
-                <i onClick={() => handleRoute(0)} className="fas fa-times-circle"></i>
+                <i onClick={() => handleAsideRoute(0)} className="fas fa-times-circle"></i>
             </StyledHeader>
             <StyledBody>
                 <BoxEditPhoto

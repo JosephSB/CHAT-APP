@@ -2,6 +2,7 @@ import { QueryClient,QueryClientProvider } from "react-query"
 import { DataProfileContextProvider } from "./contexts/DataProfile.context"
 import { RouterContextProvider } from "./contexts/Router.context"
 import AsideRouter from "./router/Aside.router"
+import BodyRouter from "./router/Body.router"
 import { StyledAside, StyledBody, StyledMain } from "./styles"
 
 const queryClient = new QueryClient()
@@ -16,7 +17,7 @@ const MainApp = () => {
                             <AsideRouter/>
                         </StyledAside>
                         <StyledBody>
-
+                            <BodyRouter/>
                         </StyledBody>
                     </StyledMain>
                 </RouterContextProvider>

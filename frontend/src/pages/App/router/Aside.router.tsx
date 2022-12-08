@@ -24,11 +24,11 @@ const Routes = [
 
 const AsideRouter = () => {
 
-    const {active} = ContextRouter();
+    const {viewsActive} = ContextRouter();
 
-    if(!Routes[active]) return Routes[0].view
+    if(!Routes[viewsActive.aside]) return Routes[0].view
 
-    return Routes[active].view
+    return Routes[viewsActive.aside].view
 }
 
 export default AsideRouter
