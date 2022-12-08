@@ -1,7 +1,7 @@
 import { CreateID } from "../../utils/Id.utils";
 import ConversationModel from "../../models/Conversation.schema";
 import {
-    IConversation
+    IConversation, IMessages
 } from "../../types/Conversation.types";
 
 export const existConversationBetweenUsers = async (userID: string, anotherUserID: string) => {
@@ -71,3 +71,14 @@ export const createConversation = async (
 
     return ID;
 };
+
+export const saveMessage = async (conversationID: string,dataMsg: Omit< IMessages, "message_id">) => {
+    await ConversationModel.updateOne({
+        conversation_id: conversationID,
+    }, {$push: {messages : {
+        ...dataMsg,
+        message_id: CreateID()
+    }}});
+
+    return true;
+}
