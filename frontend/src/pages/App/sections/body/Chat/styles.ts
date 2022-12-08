@@ -34,6 +34,7 @@ export const StyledFooterChat = styled.div`
     align-items: center;
     i{
         cursor: pointer;
+        text-align: center;
     }
     .inputSMS{
         width: 100%;
