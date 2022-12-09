@@ -9,6 +9,7 @@ export const StyledCardContact = styled.div`
     align-items: center;
     gap: 5px;
     margin: 10px 0;
+    cursor: pointer;
     .cardContact-img{
         border-radius: 50%;
     }

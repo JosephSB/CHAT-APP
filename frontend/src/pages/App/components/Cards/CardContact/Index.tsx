@@ -1,16 +1,26 @@
+import ContextRouter from "@/pages/App/contexts/Router.context"
+import ContextWebSocket from "@/pages/App/contexts/Websocket.context"
 import { IProfile } from "@/pages/App/interfaces/Profile.interface"
 import { createUrlStorage } from "@/utils/Storage.util"
 import Avatar from "react-avatar"
 import RouterButtons from "./buttons"
-import { StyledBodyCardContact, StyledButtonCardContact, StyledCardContact } from "./styles"
+import { StyledBodyCardContact, StyledCardContact } from "./styles"
 
 interface props {
     data: IProfile
 }
 
 const CardContact = ({data}:props) => {
+    const {handleData} = ContextWebSocket();
+    const {handleBodyRoute} = ContextRouter();
+
+    const handleClick = () => {
+        handleData("anotherUser", data.user_id)
+        handleBodyRoute(1)
+    }
+
     return(
-        <StyledCardContact>
+        <StyledCardContact onClick={handleClick}>
             <Avatar 
                 className='cardContact-img' 
                 src={

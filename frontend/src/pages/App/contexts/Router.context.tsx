@@ -28,7 +28,7 @@ interface Props {
 const RouterContextProvider = ({ children }: Props) => {
     const [viewsActive, setViewActive] = useState({
         aside: 0,
-        body: 1
+        body: 0
     });
 
     const handleRouteActive = (newRoute: number, type: "aside" | "body") => {
