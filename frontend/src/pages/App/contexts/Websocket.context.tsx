@@ -1,28 +1,35 @@
-import io from 'socket.io-client'
+import io,{Socket} from 'socket.io-client'
 import { createContext, useContext, useEffect, useState } from "react";
 import config from '@/config';
+import { IProfile } from '../interfaces/Profile.interface';
 
 interface WebSocketInterface {
     handleRoom: (newRoom: string) => void,
     handleData: (key: string, value: any) => void,
-    data: DataSocket
+    data: DataSocket,
+    client: Socket | undefined
 }
 
 interface DataSocket {
     conversationID: string
-    anotherUser: string
+    anotherUser: Pick<IProfile, "username" | "user_id" | "url_photo" >
 }
 
 const INIT_DATA_SOCKET = {
     conversationID: "",
-    anotherUser: ""
+    anotherUser: {
+        user_id: "", 
+        url_photo: "",
+        username: ""
+    }
 }
 
 const WebSocketContext = createContext<WebSocketInterface>(
     {
         handleRoom: () => {},
         handleData: () => {},
-        data: INIT_DATA_SOCKET
+        data: INIT_DATA_SOCKET,
+        client: undefined
     }
 );
 
@@ -45,7 +52,9 @@ const WebSocketContextProvider = ({ children }: Props) => {
     }
 
     useEffect(() => {
-
+        return function cleanup() {
+            client.emit('leaveRoom',{ conversationID: data.conversationID })
+          };
     }, []);
 
     return (
@@ -53,7 +62,8 @@ const WebSocketContextProvider = ({ children }: Props) => {
             {
                 handleRoom,
                 handleData,
-                data
+                data,
+                client
             }
         }>
             {children}

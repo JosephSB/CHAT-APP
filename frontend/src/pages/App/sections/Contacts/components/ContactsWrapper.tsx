@@ -27,7 +27,7 @@ const ContactsWrapper = () => {
         <div>
             <SearchInput placeholder='Buscar Contacto'/>
             {
-                data?.contacts.map( (item)=> <CardContact data={item} /> )
+                data?.contacts.map( (item)=> <CardContact key={item.user_id} data={item} /> )
             }
         </div>
     )

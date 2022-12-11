@@ -15,7 +15,11 @@ const CardContact = ({data}:props) => {
     const {handleBodyRoute} = ContextRouter();
 
     const handleClick = () => {
-        handleData("anotherUser", data.user_id)
+        handleData("anotherUser", {
+            user_id: data.user_id, 
+            url_photo: data.url_photo ,
+            username: data.username
+        })
         handleBodyRoute(1)
     }
 

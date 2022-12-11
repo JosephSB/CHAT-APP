@@ -3,9 +3,10 @@ import ContextDataProfile from "@/pages/App/contexts/DataProfile.context";
 import { IDetailChat } from "@/pages/App/interfaces/Chat.interfaces";
 import { createUrlStorage } from "@/utils/Storage.util";
 import Avatar from "react-avatar";
-import BubbleMsg from "./components/BubbleMsg";
-import { StyledBodyChat, StyledBtnSendSMS, StyledFooterChat, StyledHeaderChat, StyledMainChat } from "./styles";
+import { StyledBodyChat, StyledHeaderChat, StyledMainChat } from "./styles";
 import ContextWebSocket from "@/pages/App/contexts/Websocket.context";
+import FooterChat from "./components/FooterChat";
+import ListMessages from "./components/ListMessages";
 
 interface props{
     data: IDetailChat
@@ -40,17 +41,9 @@ const ViewBodyChat = ({data}:props) => {
                 }
             </StyledHeaderChat>
             <StyledBodyChat>
-                <BubbleMsg username="pepe" orientation="left" time={new Date()} message="ok daddy" />
-                <BubbleMsg username="josephsb" orientation="rigth" time={new Date()} message="ok daddy" />
+                <ListMessages/>
             </StyledBodyChat>
-            <StyledFooterChat>
-                <i className="fas fa-icons"></i>
-                <i className="fas fa-images"></i>
-                <input className="inputSMS" placeholder="Escribe tu mensaje" type="text" name="sms" />
-                <StyledBtnSendSMS>
-                    <i className="fas fa-paper-plane"></i>
-                </StyledBtnSendSMS>
-            </StyledFooterChat>
+            <FooterChat/>
         </StyledMainChat>
     )
 }
