@@ -4,6 +4,16 @@ import {
     IConversation, IMessages
 } from "../../types/Conversation.types";
 
+export const userBelongsToConversation = async (userID: string, conversationID: string) => {
+    const resp = await ConversationModel.findOne({
+        users: { $all: [userID] },
+        conversation_id: conversationID
+    }, { conversation_id: 1, users: 1, created_at: 1 });
+
+    if (!resp) return null;
+    return resp.conversation_id;
+}
+
 export const existConversationBetweenUsers = async (userID: string, anotherUserID: string) => {
     const resp = await ConversationModel.findOne({
         users: { $all: [userID, anotherUserID] },
@@ -11,6 +21,45 @@ export const existConversationBetweenUsers = async (userID: string, anotherUserI
 
     if (!resp) return null;
     return resp.conversation_id;
+}
+
+export const findMessagesOfConversation = async (conversationID: string) => {
+
+    const resp = await ConversationModel.aggregate([
+        {
+            $match: {
+                conversation_id: conversationID
+            }
+        },
+        {
+            $project: {
+                _id: 0, messages: 1,
+            }
+        },
+        {
+            $unwind: {
+                path: "$messages"
+            }
+        },
+        {
+            $lookup: {
+                from: "user",
+                localField: "messages.user_id",
+                foreignField: "user_id",
+                pipeline: [
+                    { $project: { _id: 0, username: 1, description: 1, url_photo: 1, user_id: 1 } }
+                ],
+                as: "user"
+            }
+        },
+    ])
+    /*
+    const resp = await ConversationModel.findOne({
+        conversation_id: conversationID
+    }, { messages: 1 });
+*/
+    if (!resp) return [];
+    return resp//[0]?.messages;
 }
 
 export const findConversationWithID = async (
