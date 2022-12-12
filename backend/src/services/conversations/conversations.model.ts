@@ -23,8 +23,8 @@ export const existConversationBetweenUsers = async (userID: string, anotherUserI
     return resp.conversation_id;
 }
 
-export const findMessagesOfConversation = async (conversationID: string) => {
-
+export const findMessagesOfConversation = async (conversationID: string, pag: string) => {
+    const CalcSkip = 20 * (parseInt(pag)-1);
     const resp = await ConversationModel.aggregate([
         {
             $match: {
@@ -52,7 +52,7 @@ export const findMessagesOfConversation = async (conversationID: string) => {
                 as: "user"
             }
         },
-    ])
+    ]).skip(CalcSkip).limit(20)
     /*
     const resp = await ConversationModel.findOne({
         conversation_id: conversationID

@@ -41,6 +41,7 @@ export const getDetailConversation = async (req: Request, res: Response) => {
 export const getChatMessages = async (req: Request, res: Response) => {
     const user = req.user;
     const params = req.params;
+    const query = req.query;
 
     try {
         //validar si pertene a la conversacion
@@ -48,7 +49,7 @@ export const getChatMessages = async (req: Request, res: Response) => {
         if(!resp) throw new Error("No existe la conversacion");
 
         //traer mensajes
-        const respB = await findMessagesOfConversation(params.idConversation || "").catch(() => { throw new Error("Error al traer mensajes") })
+        const respB = await findMessagesOfConversation(params.idConversation || "",query.pag as string || "1").catch(() => { throw new Error("Error al traer mensajes") })
 
         res.status(200).json({
             message: "mensajes del chat",
