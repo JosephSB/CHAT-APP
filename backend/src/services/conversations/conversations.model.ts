@@ -52,7 +52,7 @@ export const findMessagesOfConversation = async (conversationID: string, pag: st
                 as: "user"
             }
         },
-    ]).skip(CalcSkip).limit(20)
+    ]).sort({"messages.daty_sent": -1}).skip(CalcSkip).limit(20).sort({"messages.daty_sent": 1})
     /*
     const resp = await ConversationModel.findOne({
         conversation_id: conversationID
