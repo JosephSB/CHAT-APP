@@ -7,6 +7,7 @@ import { StyledBodyChat, StyledHeaderChat, StyledMainChat } from "./styles";
 import ContextWebSocket from "@/pages/App/contexts/Websocket.context";
 import FooterChat from "./components/FooterChat";
 import ListMessages from "./components/ListMessages";
+import ListPreviusMessages from "./components/ListPreviusMessages";
 
 interface props{
     data: IDetailChat
@@ -41,6 +42,7 @@ const ViewBodyChat = ({data}:props) => {
                 }
             </StyledHeaderChat>
             <StyledBodyChat>
+                <ListPreviusMessages/>
                 <ListMessages/>
             </StyledBodyChat>
             <FooterChat/>

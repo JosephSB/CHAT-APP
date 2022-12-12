@@ -44,7 +44,7 @@ const WebSocketContextProvider = ({ children }: Props) => {
     const handleRoom = (newRoom: string) => {
         if(data.conversationID !== "" ) client.emit('leaveRoom',{ conversationID: data.conversationID })
         client.emit('joinRoom',{ conversationID: newRoom })
-        setData({...data, "conversationID": newRoom})
+        //setData({...data, "conversationID": newRoom})
     }
 
     const handleData = (key: string, value: any) => {

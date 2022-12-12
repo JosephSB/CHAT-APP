@@ -16,3 +16,14 @@ export interface IMessage {
 export interface IMessageWithOrientation extends IMessage {
     orientation: "rigth" | "left"
 }
+
+export interface IPreviusMessage {
+    messages: {
+        message_id: string
+        user_id: string
+        //type_message: 0,
+        message: string,
+        daty_sent: Date,
+    },
+    user: Pick<IProfile, "description"| "user_id" | "username" | "url_photo" >[]
+}

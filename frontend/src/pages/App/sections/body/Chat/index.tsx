@@ -18,7 +18,10 @@ const BodyChat = () => {
         setData({...data, "isLoading": true })
         getDetailChat(dataSocket.data.anotherUser.user_id)
             .then( (resp) => {
-                if(resp.status === 200) setDetailChat(resp.data.data)
+                if(resp.status === 200) {
+                    setDetailChat(resp.data.data)
+                    dataSocket.handleData("conversationID", resp.data.data.conversation_id)
+                }
                 else setData({...data, "isError": true })
             } )
             .catch( () => setData({...data, "isError": true }) )

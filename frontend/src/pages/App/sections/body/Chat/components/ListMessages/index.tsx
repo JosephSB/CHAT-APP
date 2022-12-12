@@ -24,7 +24,6 @@ const ListMessages = () => {
 
     return(
         <>
-            {listMsgs.length === 0 && <p>No hay mensajes</p>}
             {
                 listMsgs.map( (msg) => {
                     if(msg.user_id === dataUser.user_id) {
