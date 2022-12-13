@@ -3,6 +3,7 @@ import Avatar from 'react-avatar';
 import SearchInput from '../../components/SearchInput';
 import ContextDataProfile from '../../contexts/DataProfile.context';
 import ContextRouter from '../../contexts/Router.context';
+import ListConversations from './components/ListConversations';
 import { StyledAside, StyledContainerSearch, StyledHeader, StyledHeaderButtons, StyledHeaderInfo } from './styles';
 
 const ChatsSection = () => {
@@ -28,6 +29,7 @@ const ChatsSection = () => {
             <StyledContainerSearch>
                 <SearchInput placeholder='Buscar Chat'/>
                 <p className='search-btn'>+ CREAR GRUPO</p>
+                <ListConversations/>
             </StyledContainerSearch>
         </StyledAside>
     )

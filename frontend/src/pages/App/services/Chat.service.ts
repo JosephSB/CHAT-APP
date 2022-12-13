@@ -20,3 +20,9 @@ export const getPreviusMessages = async (conversationID: string, pag: number) =>
     return []
 }
 
+export const getListConversations = async () => {
+    const header = CreateHeader();
+    const resp = await axios.get(`${config.API_URL}/api/conversations/getMyConversations`,header)
+    if(resp.status === 200) return resp.data.data || []
+    return []
+}

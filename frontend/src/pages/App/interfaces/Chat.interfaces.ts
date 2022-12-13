@@ -27,3 +27,9 @@ export interface IPreviusMessage {
     },
     user: Pick<IProfile, "description"| "user_id" | "username" | "url_photo" >[]
 }
+
+export interface IConversation {
+    conversation_id: string,
+    users: Pick<IProfile, "description"| "user_id" | "username" | "url_photo" >[]
+    created_at: Date
+}
