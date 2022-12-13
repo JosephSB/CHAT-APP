@@ -62,6 +62,38 @@ export const findMessagesOfConversation = async (conversationID: string, pag: st
     return resp//[0]?.messages;
 }
 
+export const findConversationsOfUser = async (userID: string) => {
+    const resp = await ConversationModel.aggregate([
+        {
+            $match: {
+                users: { $all: [userID] }
+            }
+        },
+        {
+            $project: {
+                conversation_id: 1, users: 1, created_at: 1,
+                last_message: {
+                    $last: "$messages"
+                }
+            }
+        },
+        {
+            $lookup: {
+                from: "user",
+                localField: "users",
+                foreignField: "user_id",
+                pipeline: [
+                    { $project: { _id: 0, username: 1, description: 1, url_photo: 1, user_id: 1 } }
+                ],
+                as: "users"
+            }
+        },
+    ]).sort({"last_message.daty_sent": -1})
+
+    if (resp.length === 0) return null
+    return resp
+}
+
 export const findConversationWithID = async (
     conversationID: string
 ): Promise<Omit<IConversation, "gallery" | "messages"> | null> => {
