@@ -2,38 +2,34 @@ version: '3.8'
 
 services:
   chat_backend:
-    image: chat_backend
-    container_name: chat_backend
+    image: chat_backend_prod
+    container_name: chat_backend_prod
     build: 
       context: ./backend
-      dockerfile: Dockerfile-backend
+      dockerfile: Dockerfile-backend-prod
     #depends_on:
      # - mongo_bd
     ports:
       - "4000:4000"
-    command: 
-      sh -c "npx nodemon --legacy-watch server.dev.ts"
     volumes:
       - ./backend:/usr/src/backend
       - /usr/src/backend/node_modules
     networks: 
       - app-chat-network
   
-  chat_frontend:
-    image: chat_frontend
-    container_name: chat_frontend
-    build: 
-      context: ./frontend
-      dockerfile: Dockerfile-frontend
-    ports:
-      - "5000:3000"
-    command: 
-      sh -c "npm start"
-    volumes:
-      - ./frontend:/usr/src/frontend
-      - /usr/src/frontend/node_modules
-    networks: 
-      - app-chat-network
+  #chat_frontend:
+  #  image: chat_frontend_prod
+  #  container_name: chat_frontend_prod
+  #  build: 
+  #    context: ./frontend
+  #    dockerfile: Dockerfile-frontend-prod
+  #  ports:
+  #    - "5000:80"
+  #  volumes:
+  #    - ./frontend:/usr/src/frontend
+  #    - /usr/src/frontend/node_modules
+  #  networks: 
+  #    - app-chat-network
 
   mongo_bd:
     container_name: mongo_bd

@@ -12,7 +12,7 @@ services:
     ports:
       - "4000:4000"
     command: 
-      sh -c "npx nodemon --legacy-watch server.dev.ts"
+      sh -c "npx nodemon --legacy-watch server.ts"
     volumes:
       - ./backend:/usr/src/backend
       - /usr/src/backend/node_modules
@@ -20,11 +20,11 @@ services:
       - app-chat-network
   
   chat_frontend:
-    image: chat_frontend
-    container_name: chat_frontend
+    image: chat_frontend_dev
+    container_name: chat_frontend_dev
     build: 
       context: ./frontend
-      dockerfile: Dockerfile-frontend
+      dockerfile: Dockerfile-frontend-dev
     ports:
       - "5000:3000"
     command: 
