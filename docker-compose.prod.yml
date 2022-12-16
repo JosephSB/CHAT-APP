@@ -11,25 +11,29 @@ services:
      # - mongo_bd
     ports:
       - "4000:4000"
+    env_file:
+      - ./backend/.env.prod
     volumes:
       - ./backend:/usr/src/backend
       - /usr/src/backend/node_modules
     networks: 
       - app-chat-network
   
-  #chat_frontend:
-  #  image: chat_frontend_prod
-  #  container_name: chat_frontend_prod
-  #  build: 
-  #    context: ./frontend
-  #    dockerfile: Dockerfile-frontend-prod
-  #  ports:
-  #    - "5000:80"
-  #  volumes:
-  #    - ./frontend:/usr/src/frontend
-  #    - /usr/src/frontend/node_modules
-  #  networks: 
-  #    - app-chat-network
+  chat_frontend:
+    image: chat_frontend_prod
+    container_name: chat_frontend_prod
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile-frontend-prod
+    ports:
+      - "5000:80"
+    env_file:
+      - ./frontend/.env.prod
+    volumes:
+      - ./frontend:/usr/src/frontend
+      - /usr/src/frontend/node_modules
+    networks: 
+      - app-chat-network
 
   mongo_bd:
     container_name: mongo_bd

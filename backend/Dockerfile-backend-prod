@@ -1,16 +1,15 @@
 FROM node:16-alpine as build
 WORKDIR /usr/src/backend
-COPY [".", "/usr/src/backend"]
+COPY ["package*.json", "."]
 RUN npm install
+COPY [".", "."]
 RUN npm run build
 
-
-FROM node:16-alpine as final
-WORKDIR /usr/src/backend
-COPY --from=build ["/usr/src/backend/build", "./build"]
-COPY ["package.json", "."]
-COPY ["server.js", "."]
+FROM node:14-alpine
+WORKDIR /usr/src/backend_prod
+COPY ["package*.json", "."]
 RUN npm install --only=production
+COPY --from=build ["/usr/src/backend/build", "./build"]
+COPY ["server.js", "."]
 EXPOSE 4000
-CMD ["tail", "-f"]
-#CMD ["npm", "start"]
+CMD ["npm", "start"]
