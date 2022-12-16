@@ -19,21 +19,21 @@ services:
     networks: 
       - app-chat-network
   
-  chat_frontend:
-    image: chat_frontend
-    container_name: chat_frontend
-    build: 
-      context: ./frontend
-      dockerfile: Dockerfile-frontend
-    ports:
-      - "5000:3000"
-    command: 
-      sh -c "npm start"
-    volumes:
-      - ./frontend:/usr/src/frontend
-      - /usr/src/frontend/node_modules
-    networks: 
-      - app-chat-network
+  #chat_frontend:
+  #  image: chat_frontend
+  #  container_name: chat_frontend
+  #  build: 
+  #    context: ./frontend
+  #    dockerfile: Dockerfile-frontend
+  #  ports:
+  #    - "5000:3000"
+  #  command: 
+  #    sh -c "npm start"
+  #  volumes:
+  #    - ./frontend:/usr/src/frontend
+  #    - /usr/src/frontend/node_modules
+  #  networks: 
+  #    - app-chat-network
 
   mongo_bd:
     container_name: mongo_bd
