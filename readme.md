@@ -1,4 +1,4 @@
-#CHAT APP
+# CHAT APP
 App created using  REACT, NODE, TS,DOCKER, MONGODB, NGINX
 
 - Sharp images;
