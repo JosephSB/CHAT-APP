@@ -2,17 +2,19 @@ version: '3.8'
 
 services:
   chat_backend:
-    image: chat_backend
-    container_name: chat_backend
+    image: chat_backend_dev
+    container_name: chat_backend_dev
     build: 
       context: ./backend
-      dockerfile: Dockerfile-backend
+      dockerfile: Dockerfile-backend-dev
     #depends_on:
      # - mongo_bd
     ports:
       - "4000:4000"
     command: 
       sh -c "npx nodemon --legacy-watch server.ts"
+    env_file:
+      - ./backend/.env.dev
     volumes:
       - ./backend:/usr/src/backend
       - /usr/src/backend/node_modules
@@ -27,6 +29,8 @@ services:
       dockerfile: Dockerfile-frontend-dev
     ports:
       - "5000:3000"
+    env_file:
+      - ./backend/.env.dev
     command: 
       sh -c "npm start"
     volumes:
